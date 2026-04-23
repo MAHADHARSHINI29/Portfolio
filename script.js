@@ -156,3 +156,83 @@ function reveal() {
 }
 
 window.addEventListener('scroll', reveal);
+
+// --- DATABASE & FORM HANDLING ---
+
+const contactForm = document.getElementById('contact-form');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // 1. Capture Data
+        const formData = {
+            name: document.getElementById('contact-name').value,
+            email: document.getElementById('contact-email').value,
+            subject: document.getElementById('contact-subject').value,
+            message: document.getElementById('contact-message').value,
+            timestamp: new Date().toLocaleString()
+        };
+
+        // 2. Save to "Local Database" (LocalStorage)
+        saveToLocalDatabase(formData);
+
+        // 3. UI Feedback
+        const submitBtn = contactForm.querySelector('button');
+        const originalText = submitBtn.innerText;
+        
+        submitBtn.innerText = "Message Sent!";
+        submitBtn.style.background = "#4CAF50"; // Green for success
+        
+        contactForm.reset();
+
+        setTimeout(() => {
+            submitBtn.innerText = originalText;
+            submitBtn.style.background = ""; // Reset to CSS variable
+        }, 3000);
+    });
+}
+
+// Client-side Database Helper
+function saveToLocalDatabase(data) {
+    // Get existing messages or initialize empty array
+    let messages = JSON.parse(localStorage.getItem('portfolio_messages')) || [];
+    
+    // Add new message
+    messages.push(data);
+    
+    // Save back to storage
+    localStorage.setItem('portfolio_messages', JSON.stringify(messages));
+    
+    console.log("Database Update: New message stored successfully.");
+}
+
+/** 
+ * COMMAND: View your database messages
+ * Type 'viewMessages()' in the browser console to see everyone who messaged you.
+ */
+function viewMessages() {
+    const messages = JSON.parse(localStorage.getItem('portfolio_messages')) || [];
+    if (messages.length === 0) {
+        console.log("No messages in database yet.");
+        return;
+    }
+    console.table(messages);
+}
+
+/**
+ * --- FUTURE CLOUD DATABASE SETUP (SUPABASE) ---
+ * To move this to a real live database:
+ * 1. Create a Supabase account and a 'messages' table.
+ * 2. Uncomment and configure the block below.
+ * 
+ * const supabaseUrl = 'YOUR_SUPABASE_URL';
+ * const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+ * const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+ * 
+ * async function saveToCloud(data) {
+ *    const { error } = await supabase.from('messages').insert([data]);
+ *    if (error) console.error('Error saving to cloud:', error);
+ * }
+ */
+
