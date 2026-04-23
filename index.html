@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahadharshini P | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Font for Logo -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Scribble&display=swap" rel="stylesheet">
+    <!-- FontAwesome for standard icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Loading Animation -->
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">
+                <span>M</span><span class="logo-offset">D</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="hero-content reveal">
+            <h2 class="hero-subtitle">Hello, I am</h2>
+            <h1 class="hero-title">Mahadharshini P</h1>
+            <p class="hero-desc">An <span class="italic-quote">AI/ML Enthusiast</span> and Full Stack Developer with a
+                strong foundation in Python and DevOps. Driven by a passion for real-world problem solving and
+                continuous innovation.</p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="Mahadharshini P_Resume.pdf" class="btn btn-outline"
+                    download="Mahadharshini P_Resume.pdf">Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="reveal">
+        <div class="about-grid">
+            <div class="about-img">
+                <img src="IMG_20260401_200701.jpg.jpeg" alt="Mahadharshini P" loading="lazy">
+            </div>
+            <div class="about-text">
+                <h2 class="section-title" style="text-align: left;">About <span class="highlight">Me</span></h2>
+                <p style="margin-bottom: 1.5rem;">I am a highly motivated IT engineering student at Government College
+                    of Engineering, Erode. My academic journey is centered around developing robust logic and
+                    intelligent systems.</p>
+                <p style="margin-bottom: 2rem;">I specialize in <span class="highlight"
+                        style="font-weight: 500;">Python, Artificial Intelligence, and Machine Learning</span>, while
+                    actively advancing my capabilities in modern DevOps and CI/CD automation. My ultimate goal is
+                    translating technical knowledge into aesthetically pleasing, efficient software applications that
+                    solve tangible problems.</p>
+                <a href="#contact" class="btn btn-outline">Let's Talk</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="reveal">
+        <h2 class="section-title">Technical <span class="highlight">Skills</span></h2>
+        <p class="section-subtitle">A blend of languages, intelligent frameworks, and deployment automations.</p>
+
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-code"></i> Languages</h3>
+                <div class="tech-stack" style="margin-top: 1.5rem;">
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Python</span>
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Java</span>
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">JavaScript</span>
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">SQL</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-brain"></i> AI / ML</h3>
+                <div class="tech-stack" style="margin-top: 1.5rem;">
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">TensorFlow</span>
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Anaconda</span>
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">CNN</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-globe"></i> Web & DevOps</h3>
+                <div class="tech-stack" style="margin-top: 1.5rem;">
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">HTML/CSS</span>
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">React</span>
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Jenkins</span>
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">CI/CD</span>
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Git</span>
+                    <span class="tech-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">VS Code</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="reveal">
+        <h2 class="section-title">Selected <span class="highlight">Projects</span></h2>
+        <p class="section-subtitle">Real-world applications bridging web, AI, and DevOps.</p>
+
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-icon"><i class="fa-solid fa-server"></i></div>
+                <h3>Habit Tracker</h3>
+                <p>Built a Habit Tracker web application using Git for version control and Jenkins-powered CI/CD
+                    pipelines. Automated build, testing, and deployment workflows.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">Jenkins</span>
+                    <span class="tech-pill">DevOps</span>
+                    <span class="tech-pill">CI/CD</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                    <a href="https://github.com/MAHADHARSHINI29" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">View Project</a>
+                    <span style="font-size: 0.85rem; color: var(--muted-teal); font-weight: 500;">Nov 2025</span>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-icon"><i class="fa-solid fa-dna"></i></div>
+                <h3>Brain Tumor Detection</h3>
+                <p>Developed a CNN model to detect brain tumors from MRI scans and deployed it as a Flask web
+                    application with performance optimizations.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">Python</span>
+                    <span class="tech-pill">TensorFlow</span>
+                    <span class="tech-pill">Flask</span>
+                    <span class="tech-pill">CNN</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                    <a href="https://github.com/MAHADHARSHINI29" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">View Project</a>
+                    <span style="font-size: 0.85rem; color: var(--muted-teal); font-weight: 500;">July 2025</span>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-icon"><i class="fa-solid fa-camera-retro"></i></div>
+                <h3>MahaCaptures</h3>
+                <p>Built a responsive photography portfolio website using React, showcasing curated visuals and a clean
+                    UI.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">React</span>
+                    <span class="tech-pill">JavaScript</span>
+                    <span class="tech-pill">CSS3</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                    <a href="https://github.com/MAHADHARSHINI29" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">View Project</a>
+                    <span style="font-size: 0.85rem; color: var(--muted-teal); font-weight: 500;">May 2025</span>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+                <div class="project-icon"><i class="fa-solid fa-microphone"></i></div>
+                <h3>From Siri to SmartyPants</h3>
+                <p>Enhancing voice assistants with AI techniques for improved natural language understanding, contextual
+                    awareness, and personalized responses.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">Python</span>
+                    <span class="tech-pill">AI</span>
+                    <span class="tech-pill">NLP</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                    <a href="https://github.com/MAHADHARSHINI29" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">View Project</a>
+                    <span style="font-size: 0.85rem; color: var(--muted-teal); font-weight: 500;">June 2024</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications (Bento Style) -->
+    <section class="reveal">
+        <div class="info-grid">
+            <div class="info-card">
+                <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+                <div class="list-item">
+                    <h4>B.Tech in Information Technology</h4>
+                    <span>2022 – 2026</span>
+                    <p>Government College of Engineering, Erode.<br><strong>CGPA: 8.37</strong></p>
+                </div>
+
+                <h3 style="margin-top: 2rem;"><i class="fa-solid fa-trophy"></i> Achievements</h3>
+                <div class="list-item">
+                    <h4>Table Tennis (Singles)</h4>
+                    <span>Zonal Winner</span>
+                    <p>Zonal Winner (2016, 2018); District Runner-up (2016), Third Place (2018).</p>
+                </div>
+                <div class="list-item">
+                    <h4>Table Tennis (Doubles)</h4>
+                    <span>Zonal Winner</span>
+                    <p>Zonal Winner (2016, 2017, 2018); District Runner-up (2016, 2017).</p>
+                </div>
+                <div class="list-item">
+                    <h4>Handball (Team)</h4>
+                    <span>Zonal Winner</span>
+                    <p>Zonal Winner (2016, 2017); District Third Place (2017).</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-certificate"></i> Certifications & Workshops</h3>
+                <div class="list-item">
+                    <h4>Infosys Springboard</h4>
+                    <span>Completed</span>
+                    <p>Java Fundamentals Certification.</p>
+                </div>
+                <div class="list-item">
+                    <h4>VOYAGE 2024 Hackathon</h4>
+                    <span>V-NEST</span>
+                    <p>Participant and contributor to the hackathon project.</p>
+                </div>
+                <div class="list-item">
+                    <h4>Cybersecurity Workshop</h4>
+                    <span>CSUITE TECH LABS</span>
+                    <p>Professional workshop on cybersecurity fundamental practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+        <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+        <p class="section-subtitle">Have a question or want to work together?</p>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <p><i class="fa-solid fa-phone"></i> +91 8122720771</p>
+                <p><i class="fa-solid fa-envelope"></i> p.mahadharshini29@gmail.com</p>
+
+                <div class="socials">
+                    <a href="https://github.com/MAHADHARSHINI29" target="_blank" aria-label="GitHub"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com/in/mahadharshini29" target="_blank" aria-label="LinkedIn"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Frontend-only Form -->
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Form submitted!');">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mahadharshini P. Built with HTML, CSS, & JS.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
