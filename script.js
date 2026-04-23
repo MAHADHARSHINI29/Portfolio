@@ -207,11 +207,7 @@ function saveToLocalDatabase(data) {
     console.log("Database Update: New message stored successfully.");
 }
 
-/** 
- * COMMAND: View your database messages
- * Type 'viewMessages()' in the browser console to see everyone who messaged you.
- */
-function viewMessages() {
+window.viewMessages = function() {
     const messages = JSON.parse(localStorage.getItem('portfolio_messages')) || [];
     if (messages.length === 0) {
         console.log("No messages in database yet.");
