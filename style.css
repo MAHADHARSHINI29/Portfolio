@@ -617,6 +617,12 @@ html[data-theme="dark"] .socials a {
     resize: vertical;
 }
 
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
 /* Footer */
 footer {
     text-align: center;
@@ -643,11 +649,28 @@ footer {
     .about-grid, .info-grid, .contact-container {
         grid-template-columns: 1fr;
     }
+    .contact-container {
+        padding: 2rem;
+        gap: 2rem;
+    }
     nav .nav-links {
         display: none; /* simple hidden for mobile, could add hamburger */
     }
 }
+
 @media (max-width: 576px) {
     .hero-title { font-size: 2.5rem; }
     section { padding: 4rem 5%; }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-container {
+        padding: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
 }
