@@ -7,6 +7,8 @@ window.addEventListener('load', () => {
         reveal();
         // Start typing animation
         typeName();
+        // Initialize Background Particles
+        initParticles();
     }, 500);
 });
 
@@ -20,6 +22,75 @@ function typeName() {
         nameIndex++;
         setTimeout(typeName, 150); // Speed of typing
     }
+}
+
+// Background Glitter Particles
+function initParticles() {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    
+    window.addEventListener('resize', resize);
+    resize();
+    
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+        
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 1.5 + 0.5;
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.speedY = Math.random() * 0.5 - 0.25;
+            this.opacity = Math.random() * 0.5 + 0.1;
+        }
+        
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0) this.y = canvas.height;
+        }
+        
+        draw() {
+            const theme = document.documentElement.getAttribute('data-theme');
+            // Pink glitter in dark mode, teal/soft in light mode
+            ctx.fillStyle = theme === 'dark' ? `rgba(242, 145, 163, ${this.opacity})` : `rgba(114, 140, 138, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+    
+    function createParticles() {
+        const particleCount = 70;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+    
+    createParticles();
+    animate();
 }
 
 // Sticky Navigation
