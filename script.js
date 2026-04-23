@@ -1,4 +1,3 @@
-// Loading Screen implementation
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     loader.style.opacity = '0';
@@ -6,8 +5,22 @@ window.addEventListener('load', () => {
         loader.style.display = 'none';
         // Trigger initial reveal on load
         reveal();
+        // Start typing animation
+        typeName();
     }, 500);
 });
+
+// Typewriter Animation
+const nameText = "Mahadharshini P";
+let nameIndex = 0;
+function typeName() {
+    const target = document.getElementById("typewriter-name");
+    if (target && nameIndex < nameText.length) {
+        target.innerHTML += nameText.charAt(nameIndex);
+        nameIndex++;
+        setTimeout(typeName, 150); // Speed of typing
+    }
+}
 
 // Sticky Navigation
 const header = document.getElementById('header');
