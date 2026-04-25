@@ -105,8 +105,6 @@ if (contactForm) {
     e.preventDefault();
 
     const submitBtn = contactForm.querySelector('button');
-    const originalText = submitBtn ? submitBtn.innerText : 'Send';
-
     const formData = {
       name: document.getElementById('contact-name')?.value || '',
       email: document.getElementById('contact-email')?.value || '',
@@ -114,34 +112,33 @@ if (contactForm) {
       message: document.getElementById('contact-message')?.value || '',
     };
 
-    try {
-      if (submitBtn) {
-        submitBtn.innerText = 'Sending...';
-        submitBtn.disabled = true;
-      }
+    if (!submitBtn) return;
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerText = 'Sending...';
+    submitBtn.disabled = true;
 
+    try {
       await submitMessageToApi(formData);
 
-      if (submitBtn) {
-        submitBtn.innerText = 'Message Sent!';
-        submitBtn.style.background = '#4CAF50';
-      }
-
+      submitBtn.innerHTML = 'Message Sent! <i class="fa-solid fa-check"></i>';
+      submitBtn.style.background = '#4CAF50';
       contactForm.reset();
-    } catch (err) {
-      console.error('Failed to send message:', err);
-      if (submitBtn) {
-        submitBtn.innerText = 'Failed — Try Again';
-        submitBtn.style.background = '#d9534f';
-      }
-    } finally {
+      
       setTimeout(() => {
-        if (submitBtn) {
-          submitBtn.innerText = originalText;
-          submitBtn.style.background = '';
-          submitBtn.disabled = false;
-        }
-      }, 3000);
+        submitBtn.innerHTML = originalText;
+        submitBtn.style.background = '';
+      }, 5000);
+    } catch (error) {
+      console.error('Submit Error:', error);
+      submitBtn.innerHTML = `Error: ${error.message}`;
+      submitBtn.style.background = '#f44336';
+      
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.style.background = '';
+      }, 5000);
+    } finally {
+      submitBtn.disabled = false;
     }
   });
 }
