@@ -1,234 +1,171 @@
+// -----------------------------
+// LOADING SCREEN
+// -----------------------------
 window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
+  const loader = document.getElementById('loader');
+  if (loader) {
     loader.style.opacity = '0';
     setTimeout(() => {
-        loader.style.display = 'none';
-        // Trigger initial reveal on load
-        reveal();
-        // Start typing animation
-        typeName();
-        // Initialize Background Particles
-        initParticles();
+      loader.style.display = 'none';
     }, 500);
+  }
 });
 
-// Typewriter Animation
-const nameText = "Mahadharshini P";
-let nameIndex = 0;
-function typeName() {
-    const target = document.getElementById("typewriter-name");
-    if (target && nameIndex < nameText.length) {
-        target.innerHTML += nameText.charAt(nameIndex);
-        nameIndex++;
-        setTimeout(typeName, 150); // Speed of typing
-    }
+// -----------------------------
+// NAV TOGGLE
+// -----------------------------
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav__links');
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('nav-open');
+  });
+
+  // Close nav when a link is clicked
+  document.querySelectorAll('.nav__links a').forEach((link) => {
+    link.addEventListener('click', () => navLinks.classList.remove('nav-open'));
+  });
 }
 
-// Background Glitter Particles
-function initParticles() {
-    const canvas = document.getElementById('particle-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    
-    window.addEventListener('resize', resize);
-    resize();
-    
-    class Particle {
-        constructor() {
-            this.reset();
-        }
-        
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 1.5 + 0.5;
-            this.speedX = Math.random() * 0.5 - 0.25;
-            this.speedY = Math.random() * 0.5 - 0.25;
-            this.opacity = Math.random() * 0.5 + 0.1;
-        }
-        
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            
-            if (this.x > canvas.width) this.x = 0;
-            if (this.x < 0) this.x = canvas.width;
-            if (this.y > canvas.height) this.y = 0;
-            if (this.y < 0) this.y = canvas.height;
-        }
-        
-        draw() {
-            const theme = document.documentElement.getAttribute('data-theme');
-            // Pink glitter in dark mode, teal/soft in light mode
-            ctx.fillStyle = theme === 'dark' ? `rgba(242, 145, 163, ${this.opacity})` : `rgba(114, 140, 138, ${this.opacity})`;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-    
-    function createParticles() {
-        const particleCount = 70;
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-    }
-    
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        requestAnimationFrame(animate);
-    }
-    
-    createParticles();
-    animate();
-}
+// -----------------------------
+// SMOOTH SCROLL
+// -----------------------------
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    if (!targetId || targetId === '#') return;
 
-// Sticky Navigation
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.classList.add('sticky');
-    } else {
-        header.classList.remove('sticky');
-    }
+    const target = document.querySelector(targetId);
+    if (!target) return;
+
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
 });
 
-// Dark/Light Mode logic
-const themeToggleBtn = document.getElementById('theme-toggle');
-const rootElement = document.documentElement;
-const themeIcon = themeToggleBtn.querySelector('i');
-
-// Check local storage for theme
-const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
-rootElement.setAttribute('data-theme', savedTheme);
-updateThemeIcon(savedTheme);
-
-themeToggleBtn.addEventListener('click', () => {
-    const currentTheme = rootElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    rootElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('portfolio-theme', newTheme);
-    updateThemeIcon(newTheme);
-});
-
-function updateThemeIcon(theme) {
-    if (theme === 'dark') {
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-    } else {
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-    }
-}
-
-// Reveal logic & Progress Bar Animation
+// -----------------------------
+// REVEAL ON SCROLL
+// -----------------------------
 function reveal() {
-    const reveals = document.querySelectorAll('.reveal');
+  const reveals = document.querySelectorAll('.reveal');
+  for (let i = 0; i < reveals.length; i++) {
     const windowHeight = window.innerHeight;
-    const elementVisible = 100;
+    const elementTop = reveals[i].getBoundingClientRect().top;
+    const elementVisible = 120;
 
-    reveals.forEach(revealEl => {
-        const elementTop = revealEl.getBoundingClientRect().top;
-        if (elementTop < windowHeight - elementVisible) {
-            revealEl.classList.add('active');
-            
-            // If it's the skills section, animate progress bars
-            if (revealEl.id === 'skills' || revealEl.querySelector('.progress')) {
-                const progressBars = revealEl.querySelectorAll('.progress');
-                progressBars.forEach(bar => {
-                    const width = bar.getAttribute('data-width');
-                    bar.style.width = width;
-                });
-            }
-        }
-    });
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add('active');
+
+      // If the element has progress bars, animate them once
+      const progressBars = reveals[i].querySelectorAll('.progress-bar span');
+      if (progressBars && progressBars.length) {
+        progressBars.forEach((bar) => {
+          const width = bar.getAttribute('data-width');
+          if (width) bar.style.width = width;
+        });
+      }
+    }
+  }
 }
 
 window.addEventListener('scroll', reveal);
+reveal();
 
-// --- DATABASE & FORM HANDLING ---
-
+// -----------------------------
+// CONTACT FORM -> API
+// -----------------------------
 const contactForm = document.getElementById('contact-form');
 
+async function submitMessageToApi(formData) {
+  const res = await fetch('/api/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    }),
+  });
+
+  const contentType = res.headers.get('content-type') || '';
+  const data = contentType.includes('application/json') ? await res.json() : await res.text();
+
+  if (!res.ok) {
+    const msg = typeof data === 'string' ? data : (data.error || 'request_failed');
+    throw new Error(msg);
+  }
+
+  return data;
+}
+
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // 1. Capture Data
-        const formData = {
-            name: document.getElementById('contact-name').value,
-            email: document.getElementById('contact-email').value,
-            subject: document.getElementById('contact-subject').value,
-            message: document.getElementById('contact-message').value,
-            timestamp: new Date().toLocaleString()
-        };
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        // 2. Save to "Local Database" (LocalStorage)
-        saveToLocalDatabase(formData);
+    const submitBtn = contactForm.querySelector('button');
+    const originalText = submitBtn ? submitBtn.innerText : 'Send';
 
-        // 3. UI Feedback
-        const submitBtn = contactForm.querySelector('button');
-        const originalText = submitBtn.innerText;
-        
-        submitBtn.innerText = "Message Sent!";
-        submitBtn.style.background = "#4CAF50"; // Green for success
-        
-        contactForm.reset();
+    const formData = {
+      name: document.getElementById('contact-name')?.value || '',
+      email: document.getElementById('contact-email')?.value || '',
+      subject: document.getElementById('contact-subject')?.value || '',
+      message: document.getElementById('contact-message')?.value || '',
+    };
 
-        setTimeout(() => {
-            submitBtn.innerText = originalText;
-            submitBtn.style.background = ""; // Reset to CSS variable
-        }, 3000);
-    });
-}
+    try {
+      if (submitBtn) {
+        submitBtn.innerText = 'Sending...';
+        submitBtn.disabled = true;
+      }
 
-// Client-side Database Helper
-function saveToLocalDatabase(data) {
-    // Get existing messages or initialize empty array
-    let messages = JSON.parse(localStorage.getItem('portfolio_messages')) || [];
-    
-    // Add new message
-    messages.push(data);
-    
-    // Save back to storage
-    localStorage.setItem('portfolio_messages', JSON.stringify(messages));
-    
-    console.log("Database Update: New message stored successfully.");
-}
+      await submitMessageToApi(formData);
 
-window.viewMessages = function() {
-    const messages = JSON.parse(localStorage.getItem('portfolio_messages')) || [];
-    if (messages.length === 0) {
-        console.log("No messages in database yet.");
-        return;
+      if (submitBtn) {
+        submitBtn.innerText = 'Message Sent!';
+        submitBtn.style.background = '#4CAF50';
+      }
+
+      contactForm.reset();
+    } catch (err) {
+      console.error('Failed to send message:', err);
+      if (submitBtn) {
+        submitBtn.innerText = 'Failed — Try Again';
+        submitBtn.style.background = '#d9534f';
+      }
+    } finally {
+      setTimeout(() => {
+        if (submitBtn) {
+          submitBtn.innerText = originalText;
+          submitBtn.style.background = '';
+          submitBtn.disabled = false;
+        }
+      }, 3000);
     }
-    console.table(messages);
+  });
 }
 
-/**
- * --- FUTURE CLOUD DATABASE SETUP (SUPABASE) ---
- * To move this to a real live database:
- * 1. Create a Supabase account and a 'messages' table.
- * 2. Uncomment and configure the block below.
- * 
- * const supabaseUrl = 'YOUR_SUPABASE_URL';
- * const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
- * const supabase = supabase.createClient(supabaseUrl, supabaseKey);
- * 
- * async function saveToCloud(data) {
- *    const { error } = await supabase.from('messages').insert([data]);
- *    if (error) console.error('Error saving to cloud:', error);
- * }
- */
+// -----------------------------
+// TYPEWRITER EFFECT
+// -----------------------------
+const typewriterElement = document.getElementById('typewriter-name');
+if (typewriterElement) {
+  const name = "Mahadharshini P";
+  let i = 0;
+  function type() {
+    if (i < name.length) {
+      typewriterElement.innerHTML += name.charAt(i);
+      i++;
+      setTimeout(type, 100);
+    }
+  }
+  type();
+}
 
+// Debug helper for browser console
+window.viewMessages = async function () {
+  const res = await fetch('/api/messages?limit=50&offset=0');
+  const data = await res.json();
+  console.table(data.items || []);
+};

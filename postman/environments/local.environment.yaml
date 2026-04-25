@@ -1,0 +1,9 @@
+type: environment
+name: local
+values:
+  - key: baseUrl
+    value: http://localhost:3000
+    enabled: true
+  - key: messageId
+    value: '1'
+    enabled: true

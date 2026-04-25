@@ -1,0 +1,18 @@
+{
+  "name": "resume-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio site with a small backend API for contact messages",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.104.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^4.22.1",
+    "sqlite3": "^5.1.7"
+  }
+}
