@@ -558,6 +558,19 @@ html[data-theme="dark"] .tech-pill {
     text-align: center;
 }
 
+.contact-info a {
+    text-decoration: none;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
+}
+
+.contact-info a:hover {
+    color: var(--primary-pink);
+}
+
 .socials {
     display: flex;
     gap: 1rem;
